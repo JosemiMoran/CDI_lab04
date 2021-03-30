@@ -1,26 +1,22 @@
-import java.util.concurrent.locks.Lock;
+public class MySynchronizedTask implements Runnable {
 
-public class MyLockTask implements Runnable {
-
-    private final MyLockCounter counter;
-    private Lock lock;
+    private final SynchronizedCounter counter;
     private final int id;
     private final Timer timer;
 
-    public MyLockTask(MyLockCounter counter, Lock lock, int id, Timer lockTimer) {
+    public MySynchronizedTask(SynchronizedCounter counter, int id, Timer synchroTimer) {
         this.counter = counter;
-        this.lock = lock;
         this.id = id;
-        this.timer = lockTimer;
+        this.timer = synchroTimer;
     }
 
     @Override
     public void run() {
         this.timer.Start(id);
         System.out.println("Starting run: " + Thread.currentThread().getName());
-        lock.lock();
-        counter.increment();
-        lock.unlock();
+        synchronized (counter) {
+            counter.increment();
+        }
         System.out.println("Ending run: " + Thread.currentThread().getName());
         this.timer.Stop(id);
     }

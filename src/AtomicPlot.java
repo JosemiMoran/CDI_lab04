@@ -1,3 +1,5 @@
+import org.math.plot.Plot2DPanel;
+
 import javax.swing.*;
 import java.io.File;
 import java.nio.charset.Charset;
@@ -7,13 +9,11 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import org.math.plot.*;
-
-public class LockPlot {
+public class AtomicPlot {
     public static void main(String[] args) {
         try {
-            File myObj = new File("./src/lockValues.txt");
-            Path path = Paths.get("./src/lockValues.txt");
+            File myObj = new File("./src/atomicValues.txt");
+            Path path = Paths.get("./src/AtomicValues.txt");
             int numLines;
             try (Stream<String> lines = Files.lines(path, Charset.defaultCharset())) {
                 numLines = (int) lines.count();
@@ -39,18 +39,16 @@ public class LockPlot {
             plot.addLegend("SOUTH");
 
             // add a line plot to the PlotPanel
-            plot.addLinePlot("CDI LAB04 LOCK", x, y);
+            plot.addLinePlot("CDI LAB04 ATOMIC", x, y);
 
             // put the PlotPanel in a JFrame like a JPanel
-            JFrame frame = new JFrame("CDI LAB04 LOCK");
+            JFrame frame = new JFrame("CDI LAB04 ATOMIC");
             frame.setSize(600, 600);
             frame.setContentPane(plot);
             frame.setVisible(true);
 
         } catch (Exception e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-            e.getMessage();
+            System.out.println("An error occurred:" + e.getMessage() + ", ");
         }
     }
 }

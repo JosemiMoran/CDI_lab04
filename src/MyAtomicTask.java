@@ -1,24 +1,21 @@
-package Synchro;
 
-public class MySynchronizedTask implements Runnable {
+public class MyAtomicTask implements Runnable {
 
-    private final SynchronizedCounter counter;
+    private final MyAtomicCounter counter;
     private final int id;
     private final Timer timer;
 
-    public MySynchronizedTask(SynchronizedCounter counter, int id, Timer synchroTimer) {
+    public MyAtomicTask(MyAtomicCounter counter, int id, Timer atomicTimer) {
         this.counter = counter;
         this.id = id;
-        this.timer = synchroTimer;
+        this.timer = atomicTimer;
     }
 
     @Override
     public void run() {
         this.timer.Start(id);
         System.out.println("Starting run: " + Thread.currentThread().getName());
-        synchronized (counter) {
-            counter.increment();
-        }
+        counter.increment();
         System.out.println("Ending run: " + Thread.currentThread().getName());
         this.timer.Stop(id);
     }

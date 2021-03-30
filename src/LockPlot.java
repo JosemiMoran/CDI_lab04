@@ -1,5 +1,3 @@
-package Synchro;
-
 import org.math.plot.Plot2DPanel;
 
 import javax.swing.*;
@@ -11,11 +9,11 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class SynchroPlot {
+public class LockPlot {
     public static void main(String[] args) {
         try {
-            File myObj = new File("./src/SynchroValues.txt");
-            Path path = Paths.get("./src/SynchroValues.txt");
+            File myObj = new File("./src/lockValues.txt");
+            Path path = Paths.get("./src/lockValues.txt");
             int numLines;
             try (Stream<String> lines = Files.lines(path, Charset.defaultCharset())) {
                 numLines = (int) lines.count();
@@ -41,10 +39,10 @@ public class SynchroPlot {
             plot.addLegend("SOUTH");
 
             // add a line plot to the PlotPanel
-            plot.addLinePlot("CDI LAB04 SYNCHRONIZE", x, y);
+            plot.addLinePlot("CDI LAB04 LOCK", x, y);
 
             // put the PlotPanel in a JFrame like a JPanel
-            JFrame frame = new JFrame("CDI LAB04 SYNCHRONIZE");
+            JFrame frame = new JFrame("CDI LAB04 LOCK");
             frame.setSize(600, 600);
             frame.setContentPane(plot);
             frame.setVisible(true);
@@ -56,4 +54,3 @@ public class SynchroPlot {
         }
     }
 }
-

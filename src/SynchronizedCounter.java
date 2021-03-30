@@ -1,5 +1,3 @@
-package Synchro;
-
 public class SynchronizedCounter {
 
     private int accumulator;

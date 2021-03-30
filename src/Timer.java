@@ -1,9 +1,3 @@
-package Synchro;
-/*
- * (c) copyright 2019 Universidade de Vigo. All rights reserved.
- * formella@uvigo.es, http://formella.webs.uvigo.es
- */
-
 class Timer {
     private final long[] startTime;
     private final long[] stopTime;
