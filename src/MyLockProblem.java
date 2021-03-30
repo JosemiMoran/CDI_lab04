@@ -7,7 +7,7 @@ public class MyLockProblem {
     public static Timer LockTimer;
 
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         System.out.println("Starting main");
         int numThreads = Integer.parseInt(args[0]);
@@ -17,7 +17,7 @@ public class MyLockProblem {
         ArrayList<Thread> threadArrayList = new ArrayList<>(numThreads);
 
         for (int i = 0; i < numThreads; i++) {
-            Thread thread = new Thread(new MyLockTask(counter, lock, i), "Thread " + i);
+            Thread thread = new Thread(new MyLockTask(counter, lock, i, LockTimer), "Thread " + i);
             System.out.println("Creating: " + thread.getName());
             threadArrayList.add(thread); // Adding the thread into the arraylist
         }

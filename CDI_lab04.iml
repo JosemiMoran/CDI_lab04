@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="JMathArray-1.0" level="application" />
+    <orderEntry type="library" name="jama-1.0.3" level="project" />
   </component>
 </module>

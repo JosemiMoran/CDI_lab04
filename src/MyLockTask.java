@@ -5,27 +5,24 @@ public class MyLockTask implements Runnable {
     private final MyLockCounter counter;
     private Lock lock;
     private final int id;
-    public MyLockTask(MyLockCounter counter, Lock lock, int id) {
+    private final Timer timer;
+
+    public MyLockTask(MyLockCounter counter, Lock lock, int id, Timer lockTimer) {
         this.counter = counter;
         this.lock = lock;
         this.id = id;
+        this.timer = lockTimer;
     }
 
     @Override
     public void run() {
-        MyLockProblem.LockTimer.Start(id);
+        this.timer.Start(id);
         System.out.println("Starting run: " + Thread.currentThread().getName());
-        try {
-            Thread.sleep((long) (Math.random() * 100));
-            lock.lock();
-            counter.increment();
-            lock.unlock();
-        } catch (InterruptedException e) {
-            System.out.println("Sleeping error in: " + Thread.currentThread().getName());
-        }
+        lock.lock();
+        counter.increment();
+        lock.unlock();
         System.out.println("Ending run: " + Thread.currentThread().getName());
-        long endTime = System.currentTimeMillis();
-        MyLockProblem.LockTimer.Stop(id);
+        this.timer.Stop(id);
     }
 }
 

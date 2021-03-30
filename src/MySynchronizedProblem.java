@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class MySynchronizedProblem {
     public static Timer SynchroTimer;
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println("Starting main");
         int numThreads = Integer.parseInt(args[0]);
         SynchroTimer = new Timer(numThreads);
@@ -12,7 +12,7 @@ public class MySynchronizedProblem {
         ArrayList<Thread> threadArrayList = new ArrayList<>(numThreads);
 
         for (int i = 0; i < numThreads; i++) {
-            Thread thread = new Thread(new MySynchronizedTask(counter, i), "Thread " + i);
+            Thread thread = new Thread(new MySynchronizedTask(counter, i, SynchroTimer), "Thread " + i);
             System.out.println("Creating: " + thread.getName());
             threadArrayList.add(thread); // Adding the thread into the arraylist
         }
@@ -29,7 +29,6 @@ public class MySynchronizedProblem {
 
             } catch (InterruptedException e) {
                 System.out.println("Join error in: " + thread.getName());
-                ;
             }
         }
         System.out.println("Current counter value: " + counter.getAccumulator());

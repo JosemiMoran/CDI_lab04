@@ -4,15 +4,15 @@ import java.util.ArrayList;
 public class MyAtomicProblem {
     public static Timer AtomicTimer;
 
-    public static void main(String args[]) {
-        System.out.println("Starting main");
+    public static void main(String[] args) {
+        System.out.println("Starting main...");
         int numThreads = Integer.parseInt(args[0]);
         AtomicTimer = new Timer(numThreads);
         MyAtomicCounter counter = new MyAtomicCounter(0);
         ArrayList<Thread> threadArrayList = new ArrayList<>(numThreads);
 
         for (int i = 0; i < numThreads; i++) {
-            Thread thread = new Thread(new MyAtomicTask(counter, i), "Thread " + i);
+            Thread thread = new Thread(new MyAtomicTask(counter, i , AtomicTimer), "Thread " + i);
             System.out.println("Creating: " + thread.getName());
             threadArrayList.add(thread); // Adding the thread into the arraylist
         }
@@ -26,7 +26,6 @@ public class MyAtomicProblem {
         ) {
             try {
                 thread.join();
-
             } catch (InterruptedException e) {
                 System.out.println("Join error in: " + thread.getName());
 
@@ -36,12 +35,12 @@ public class MyAtomicProblem {
         double duration = AtomicTimer.Elapsed();
         System.out.println("The total duration is:" + duration);
         System.out.println("Ending main");
-        appendUsingPrintWriter("AtomicValues.txt", numThreads, duration);
+        appendUsingPrintWriter(numThreads, duration);
 
     }
 
-    private static void appendUsingPrintWriter(String filePath, int numThreads, double duration) {
-        File file = new File(filePath);
+    private static void appendUsingPrintWriter(int numThreads, double duration) {
+        File file = new File("AtomicValues.txt");
         FileWriter fr = null;
         BufferedWriter br = null;
         PrintWriter pr = null;

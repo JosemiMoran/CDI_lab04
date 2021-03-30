@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jama-1.0.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jama-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/JMathArray-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/JMathIO-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/JMathPlot-1.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

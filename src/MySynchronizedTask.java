@@ -2,26 +2,23 @@ public class MySynchronizedTask implements Runnable {
 
     private final SynchronizedCounter counter;
     private final int id;
-    public MySynchronizedTask(SynchronizedCounter counter, int id) {
+    private final Timer timer;
+
+    public MySynchronizedTask(SynchronizedCounter counter, int id, Timer synchroTimer) {
         this.counter = counter;
         this.id = id;
+        this.timer = synchroTimer;
     }
 
     @Override
     public void run() {
-        MySynchronizedProblem.SynchroTimer.Start(id);
+        this.timer.Start(id);
         System.out.println("Starting run: " + Thread.currentThread().getName());
-        try {
-            Thread.sleep((long) (Math.random() * 100));
-        } catch (InterruptedException e) {
-            System.out.println("Sleeping error in: " + Thread.currentThread().getName());
-        }
         synchronized (counter) {
             counter.increment();
         }
         System.out.println("Ending run: " + Thread.currentThread().getName());
-        MySynchronizedProblem.SynchroTimer.Stop(id);
-
+        this.timer.Stop(id);
     }
 }
 
